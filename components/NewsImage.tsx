@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react';
 
+// Use Omit to remove the conflicting 'src' property from ImgHTMLAttributes
+// Then redefine 'src' to allow null/undefined, which is common in our data model
 interface NewsImageProps extends Omit<React.ImgHTMLAttributes<HTMLImageElement>, 'src'> {
   src: string | null | undefined;
   alt: string;
