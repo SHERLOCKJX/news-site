@@ -2,7 +2,7 @@ import { prisma } from '@/lib/db';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { formatDistanceToNow } from 'date-fns';
-import NewsImage from '@/components/NewsImage';
+import NewsImage from '@/components/NewsImageComponent';
 
 export const revalidate = 60;
 

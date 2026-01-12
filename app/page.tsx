@@ -1,7 +1,7 @@
 import { prisma } from '@/lib/db';
 import Link from 'next/link';
 import { formatDistanceToNow } from 'date-fns';
-import NewsImage from '@/components/NewsImage';
+import NewsImage from '@/components/NewsImageComponent';
 
 export const revalidate = 60; // Revalidate every minute
 

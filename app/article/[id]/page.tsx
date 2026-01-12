@@ -2,7 +2,9 @@ import { prisma } from '@/lib/db';
 import { notFound } from 'next/navigation';
 import { format } from 'date-fns';
 import Link from 'next/link';
-import NewsImage from '@/components/NewsImage';
+import NewsImage from '@/components/NewsImageComponent';
+
+export const revalidate = 3600; // Revalidate every hour
 
 export default async function ArticlePage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
