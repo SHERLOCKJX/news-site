@@ -2,18 +2,20 @@
   "name": "news-site",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "dev": "next dev",
-    "postinstall": "prisma generate && prisma db push",
-    "vercel-build": "prisma generate && prisma db push && next build",
+    "postinstall": "prisma generate",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "db:push": "prisma db push",
+    "db:generate": "prisma generate"
   },
   "dependencies": {
-    "@prisma/adapter-better-sqlite3": "^7.2.0",
     "@prisma/client": "^5.22.0",
-    "better-sqlite3": "^12.6.0",
     "cheerio": "^1.1.2",
     "date-fns": "^4.1.0",
     "dotenv": "^17.2.3",

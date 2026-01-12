@@ -29,8 +29,24 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Deploy on Render
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This repo includes a [render.yaml](file:///c:/Users/yushu/Desktop/%E8%87%AA%E5%BB%BA%20%E6%96%B0%E9%97%BB%20%E7%BD%91%E7%AB%99/news-site/render.yaml) Blueprint.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Steps:
+
+1. Create a new Render service from this GitHub repo.
+2. Render will provision a PostgreSQL database and inject `DATABASE_URL`.
+3. Add `DEEPSEEK_API_KEY` in Render Environment Variables.
+
+The service runs:
+- Build: `npm ci && npx prisma generate && npm run build`
+- Start: `npx prisma db push && npx next start -p $PORT`
+
+## Local Environment
+
+Copy `.env.example` to `.env` and set values:
+
+```bash
+cp .env.example .env
+```

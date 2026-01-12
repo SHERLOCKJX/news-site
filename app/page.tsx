@@ -4,6 +4,7 @@ import { formatDistanceToNow } from 'date-fns';
 import NewsImage from '@/components/NewsImageComponent';
 
 export const revalidate = 60; // Revalidate every minute
+export const dynamic = 'force-dynamic';
 
 async function getArticles() {
   try {
@@ -19,8 +20,7 @@ async function getArticles() {
 }
 
 export default async function Home() {
-  // const articles = await getArticles();
-  const articles: any[] = []; // Force empty for initial build
+  const articles = await getArticles();
 
   if (articles.length === 0) {
     return (

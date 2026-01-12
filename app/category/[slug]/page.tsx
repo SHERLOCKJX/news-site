@@ -5,6 +5,7 @@ import { formatDistanceToNow } from 'date-fns';
 import NewsImage from '@/components/NewsImageComponent';
 
 export const revalidate = 60;
+export const dynamic = 'force-dynamic';
 
 // Generate static params for known categories
 export async function generateStaticParams() {
@@ -40,8 +41,7 @@ async function getCategoryArticles(slug: string) {
 
 export default async function CategoryPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  // const articles = await getCategoryArticles(slug);
-  const articles: any[] = []; // Force empty
+  const articles = await getCategoryArticles(slug);
   
   const title = slug.charAt(0).toUpperCase() + slug.slice(1);
 
