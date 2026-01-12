@@ -40,7 +40,8 @@ async function getCategoryArticles(slug: string) {
 
 export default async function CategoryPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const articles = await getCategoryArticles(slug);
+  // const articles = await getCategoryArticles(slug);
+  const articles: any[] = []; // Force empty
   
   const title = slug.charAt(0).toUpperCase() + slug.slice(1);
 

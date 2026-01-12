@@ -19,7 +19,8 @@ async function getArticles() {
 }
 
 export default async function Home() {
-  const articles = await getArticles();
+  // const articles = await getArticles();
+  const articles: any[] = []; // Force empty for initial build
 
   if (articles.length === 0) {
     return (
