@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 
-interface NewsImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
+interface NewsImageProps extends Omit<React.ImgHTMLAttributes<HTMLImageElement>, 'src'> {
   src: string | null | undefined;
   alt: string;
   fallbackText?: string;
