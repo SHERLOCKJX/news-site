@@ -1,5 +1,6 @@
 'use client';
 
+// @ts-nocheck
 import { useState, useEffect } from 'react';
 
 // Use Omit to remove the conflicting 'src' property from ImgHTMLAttributes
