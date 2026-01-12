@@ -8,10 +8,16 @@ export const revalidate = 3600; // Revalidate every hour
 
 export default async function ArticlePage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const article = await prisma.article.findUnique({
-    where: { id },
-    include: { feed: true }
-  });
+  let article = null;
+  
+  try {
+    article = await prisma.article.findUnique({
+      where: { id },
+      include: { feed: true }
+    });
+  } catch (error) {
+    console.error('Failed to fetch article:', error);
+  }
 
   if (!article) {
     notFound();

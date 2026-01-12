@@ -6,11 +6,16 @@ import NewsImage from '@/components/NewsImageComponent';
 export const revalidate = 60; // Revalidate every minute
 
 async function getArticles() {
-  return await prisma.article.findMany({
-    orderBy: { publishedAt: 'desc' },
-    take: 50,
-    include: { feed: true }
-  });
+  try {
+    return await prisma.article.findMany({
+      orderBy: { publishedAt: 'desc' },
+      take: 50,
+      include: { feed: true }
+    });
+  } catch (error) {
+    console.error('Failed to fetch articles (DB might not be initialized):', error);
+    return [];
+  }
 }
 
 export default async function Home() {

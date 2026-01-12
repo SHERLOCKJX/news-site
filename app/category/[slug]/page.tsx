@@ -17,20 +17,25 @@ export async function generateStaticParams() {
 }
 
 async function getCategoryArticles(slug: string) {
-  // Map 'opinion' to a potential category or just filter differently if needed.
-  // Currently our seed maps: world, tech, business. 
-  // If slug is opinion, we might look for category 'opinion' or just show empty for now.
-  
-  return await prisma.article.findMany({
-    where: {
-      feed: {
-        category: slug.toLowerCase()
-      }
-    },
-    orderBy: { publishedAt: 'desc' },
-    take: 20,
-    include: { feed: true }
-  });
+  try {
+    // Map 'opinion' to a potential category or just filter differently if needed.
+    // Currently our seed maps: world, tech, business. 
+    // If slug is opinion, we might look for category 'opinion' or just show empty for now.
+    
+    return await prisma.article.findMany({
+      where: {
+        feed: {
+          category: slug.toLowerCase()
+        }
+      },
+      orderBy: { publishedAt: 'desc' },
+      take: 20,
+      include: { feed: true }
+    });
+  } catch (error) {
+    console.error('Failed to fetch category articles:', error);
+    return [];
+  }
 }
 
 export default async function CategoryPage({ params }: { params: Promise<{ slug: string }> }) {
