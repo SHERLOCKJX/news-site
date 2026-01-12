@@ -1,0 +1,54 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Feed {
+  id        String    @id @default(uuid())
+  name      String
+  url       String    @unique
+  active    Boolean   @default(true)
+  category  String    @default("general") // world, business, tech, opinion, general
+  articles  Article[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Article {
+  id          String   @id @default(uuid())
+  title       String
+  content     String? // This might be the full content or description
+  snippet     String? // Short description
+  link        String   @unique
+  author      String?
+  publishedAt DateTime
+  source      String?  // Name of the source if Feed is deleted or manual
+  imageUrl    String?
+  keyword     String?  // AI generated keyword for placeholder
+  
+  feedId      String?
+  feed        Feed?    @relation(fields: [feedId], references: [id])
+  
+  isManual    Boolean  @default(false) // True if manually submitted
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@index([publishedAt])
+}
