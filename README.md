@@ -37,7 +37,7 @@ Steps:
 
 1. Create a new Render service from this GitHub repo.
 2. Render will provision a PostgreSQL database and inject `DATABASE_URL`.
-3. Add `DEEPSEEK_API_KEY` in Render Environment Variables.
+3. Optional: Add `DEEPSEEK_API_KEY` in Render Environment Variables to enable AI summaries/keywords.
 
 The service runs:
 - Build: `npm ci && npx prisma generate && npm run build`

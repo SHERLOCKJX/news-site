@@ -132,7 +132,7 @@ export async function updateFeeds() {
         // We can do this if article is new, or if we want to enrich it
         // To save API costs, let's do it for new articles or ones without keywords
         let aiData = null;
-        if ((!exists || !exists.keyword) && (item.content || item.contentSnippet)) {
+        if (process.env.DEEPSEEK_API_KEY && (!exists || !exists.keyword) && (item.content || item.contentSnippet)) {
            // Basic rate limiting/cost control: maybe skip if we are processing too many?
            // For now, let's just do it.
            const text = item.contentSnippet || item.content || '';
