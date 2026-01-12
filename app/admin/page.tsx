@@ -4,7 +4,12 @@ import { logout } from '@/app/login/actions';
 import ArticleForm from '@/components/ArticleForm';
 
 export default async function AdminPage() {
-  const feeds = await prisma.feed.findMany();
+  let feeds = [];
+  try {
+    feeds = await prisma.feed.findMany();
+  } catch (error) {
+    console.error('Failed to fetch feeds:', error);
+  }
 
   return (
     <div className="max-w-4xl mx-auto py-12">
